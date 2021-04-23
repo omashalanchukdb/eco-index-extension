@@ -22,8 +22,10 @@ changeColor.addEventListener("click", async () => {
 function getProductsList() {
     let productElements = document.querySelectorAll("[data-autotest-id='product-snippet']");
     let productList = [...productElements].map(item => JSON.parse(item.getAttribute('data-zone-data')));
-    productElements.forEach(function(currentValue, currentIndex, listObj){currentValue.innerHTML = "<div id='atata' style='background-color:red'>" + currentValue.innerHTML + "</div>"})
-    console.log(productList);
+    document.querySelectorAll("[data-autotest-id='product-snippet']").forEach(
+        function(currentValue, currentIndex, listObj) {
+            currentValue.innerHTML = "<div id='atata'><p style='color:green;font-size:18px'>37</p>" + currentValue.innerHTML + "</div>"
+        })
 }
 
 function setPageBackgroundColor() {
