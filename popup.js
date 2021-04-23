@@ -5,19 +5,26 @@ chrome.storage.sync.get("color", ({ color }) => {
 });
 
 changeColor.addEventListener("click", async () => {
-    debugger
+
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
 
-    function: setPageBackgroundColor,
+    function: getProductsList
   });
 });
 
 // The body of this function will be executed as a content script inside the
 
 // current page
+
+function getProductsList() {
+    let productElements = document.querySelectorAll("[data-autotest-id='product-snippet']");
+    let productList = [...productElements].map(item => JSON.parse(item.getAttribute('data-zone-data')));
+    productElements.forEach(function(currentValue, currentIndex, listObj){currentValue.innerHTML = "<div id='atata' style='background-color:red'>" + currentValue.innerHTML + "</div>"})
+    console.log(productList);
+}
 
 function setPageBackgroundColor() {
   chrome.storage.sync.get("color", ({ color }) => {
