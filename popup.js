@@ -22,9 +22,17 @@ changeColor.addEventListener("click", async () => {
 function getProductsList() {
     let productElements = document.querySelectorAll("[data-autotest-id='product-snippet']");
     let productList = [...productElements].map(item => JSON.parse(item.getAttribute('data-zone-data')));
+    let i = 0;
+    let productMap = new Map();
+    productList.forEach(item => {
+        productMap.set(i, item.skuId);
+        i++;
+    });
+    console.log(productMap);
     document.querySelectorAll("[data-autotest-id='product-snippet']").forEach(
         function(currentValue, currentIndex, listObj) {
-            currentValue.innerHTML = "<div id='eco-index'><p style='float:right;color:green;font-size:18px'>37</p>" + currentValue.innerHTML + "</div>"
+            currentValue.innerHTML = "<div id='eco-index'><p style='float:right;color:green;font-size:18px'>"
+            + productMap.get(currentIndex) +"</p>" + currentValue.innerHTML + "</div>"
         })
 }
 
