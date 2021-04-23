@@ -24,7 +24,7 @@ function getProductsList() {
     let productList = [...productElements].map(item => JSON.parse(item.getAttribute('data-zone-data')));
     document.querySelectorAll("[data-autotest-id='product-snippet']").forEach(
         function(currentValue, currentIndex, listObj) {
-            currentValue.innerHTML = "<div id='atata'><p style='color:green;font-size:18px'>37</p>" + currentValue.innerHTML + "</div>"
+            currentValue.innerHTML = "<div id='eco-index'><p style='color:green;font-size:18px'>37</p>" + currentValue.innerHTML + "</div>"
         })
 }
 
